@@ -35,23 +35,23 @@ on:
       LOCAL_MANIFEST:
         description: "Personal local manifest [repository or raw]:"
         required: true
-        default: 'https://github.com/sounddrill31/local_manifests'
+        default: 'https://github.com/YudhoPatrianto/YudhoPatrianto_Local_Manifests'
       LOCAL_MANIFEST_BRANCH:
         description: "Personal local manifest's branch:"
         required: false
-        default: 'lineage-oxygen'
+        default: 'selene'
       DEVICE_NAME:
         description: "Device's codename:"
         required: true
-        default: "oxygen"
+        default: "selene"
       PRODUCT_NAME:
         description: "Product to build:"
         required: true
-        default: "lineage_oxygen"
+        default: "afterlife_selene"
       BUILD_COMMAND:
         description: 'Command to be used for compiling:'
         required: true
-        default: 'mka bacon'
+        default: 'make bacon'
       BUILD_TYPE:
         description: 'Type of build:'
         required: true
@@ -186,16 +186,9 @@ jobs:
         mkdir tester
         cd tester 
         git clone ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests && \
-
-        if [ ! $? == 0 ]; then \
-          git clone .repo/local_manifests ${{ github.event.inputs.LOCAL_MANIFEST }} -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }}; \
-          echo "Git clone failed, downloading through curl instead..."; \ 
-        fi \
     
-        timeout 1m repo sync --force-sync || { exit_code=$?; [ $exit_code -eq 124 ] || (echo "Error: Process failed with exit code $exit_code"; exit $exit_code); }
         du -csh . # Output Size when done
         rm -rf .repo
-      timeout-minutes: 10
     outputs:
       PROJECTFOLDER: ${{ needs.prepare.outputs.PROJECTFOLDER }}
       PROJECTID: ${{ needs.prepare.outputs.PROJECTID }}
