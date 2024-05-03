@@ -182,7 +182,7 @@ jobs:
     - name: Test Local Manifests
       if: ${{ github.event.inputs.BUILD_DIFFERENT_ROM != 'skip' }}
       run: |
-        repo init --depth=1 -u ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests
+        repo init --depth=1 -u ${{ github.event.inputs.LOCAL_MANIFEST }} -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }}
         repo sync --force-sync --no-clone-bundle
         du -csh . # Output Size when done
         rm -rf .repo
