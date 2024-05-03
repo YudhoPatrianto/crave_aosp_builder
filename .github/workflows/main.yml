@@ -24,6 +24,7 @@ on:
           - 'PixelOS 14'
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
+          - 'AfterLife 13.0'
       BUILD_DIFFERENT_ROM:
         description: "Command to initialize a different 'repo' project:"
         required: false
@@ -118,6 +119,12 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Cyanogen14"
           export PROJECTID="83"
           export REPO_INIT="repo init -u https://github.com/accupara/los-cm14.1.git -b cm-14.1 --git-lfs --depth=1"
+        ;;
+        "AfterLife 13.0")
+          export PROJECTFOLDER="/crave-devspaces/AfterLife13"
+          export PROJECTID="84"
+          export REPO_INIT="repo init -u https://github.com/AfterLifePrjkt13/android_manifest -b LTS --git-lfs --depth=1"
+          
         ;;
         esac
         echo "Building on ${{ github.event.inputs.BASE_PROJECT }} project"
