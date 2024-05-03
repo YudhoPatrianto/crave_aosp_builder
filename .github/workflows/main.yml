@@ -365,6 +365,7 @@ jobs:
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
+        chmod 777 device/xiaomi/selene/dtbo/append_certs.py && \
         source build/envsetup.sh && \
 
         echo "Repository: ${{ github.repository }}"; \
