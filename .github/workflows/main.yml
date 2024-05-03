@@ -186,7 +186,8 @@ jobs:
         mkdir tester
         cd tester 
         git clone ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{ github.event.inputs.LOCAL_MANIFEST_BRANCH }} .repo/local_manifests && \
-    
+        repo init
+        repo sync --depth=1 --force-sync --no-clone-bundle
         du -csh . # Output Size when done
         rm -rf .repo
     outputs:
